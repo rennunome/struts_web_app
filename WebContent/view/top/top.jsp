@@ -1,35 +1,45 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<jsp:include page="header.jsp"></jsp:include>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="org.apache.struts2.ServletActionContext"%>
+<%@ page import="java.util.*"%>
+<%@ page import="entity.User"%>
+<%@ page import="util.DBUtil"%>
+<%@ page import="com.opensymphony.xwork2.ActionContext"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <head>
 <meta charset="UTF-8">
 <title>Top</title>
 </head>
 <body>
 <div align="center">
-			<%-- <% byte admin_flag = (byte)request.getSession().getAttribute("admin_flag");%>
-			<% if (admin_flag == 1) {%> --%>
-			<form action="list"  method="post">
+			<!-- セッションに詰めたadmin_flag情報 -->
+			<%-- <p>${session.user_admin}</p>
+			<s:property value="#session['user_admin']" />
+			<% byte admin = (byte)ActionContext.getContext().getSession().get("user_admin");%>
+			<% if(admin == 1) {%> --%>
+			<s:form action="list"  method="post">
 			<input type="submit" value="問題と答えを確認・登録する ＞ " name= "listed" style="width: 250px">
-			</form>
-			<form action="test"  method="post">
+			</s:form>
+			<s:form action="test"  method="post">
 			<input type="submit" value="テストをする ＞" style="width: 250px">
-			</form>
-			<form action="history"  method="post">
+			</s:form>
+			<s:form action="history"  method="post">
 			<input type="submit" value="過去の採点結果をみる ＞" style="width: 250px">
-			</form>
-			<form action="userlist"  method="post">
+			</s:form>
+			<s:form action="userlist"  method="post">
 			<input type="submit" value="ユーザを追加・編集する＞" style="width: 250px">
-			</form>
-			<%-- <% } else { %> --%>
-			<form action="test"  method="post">
+			</s:form>
+
+			<!-- 画面分岐 -->
+			<%-- <% } else { %>
+			<s:form action="test"  method="post">
 			<input type="submit" value="テストをする ＞" style="width: 250px">
-			</form>
-			<form action="history"  method="post">
+			</s:form>
+			<s:form action="history"  method="post">
 			<input type="submit" value="過去の採点結果をみる ＞" style="width: 250px">
-			</form>
-			<%-- <% } %> --%>
+			</s:form>
+			<% } %> --%>
 		</div>
 </body>
 </html>

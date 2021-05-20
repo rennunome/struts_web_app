@@ -5,10 +5,14 @@
 <struts>
     <!-- アクションのパッケージ定義 -->
     <package name="Struts" extends="struts-default">
-        <!-- サンプルアクション -->
+        <!-- ログインアクション -->
         <action name="login" class="action.LoginAction" method="execute">
             <result name="success">/view/top/top.jsp</result>
              <result name="error">/view/login/login.jsp</result>
         </action>
+		 <!-- ログアウトアクション -->
+       <action name="logout" class="action.LogoutAction" method="logout">
+			<result name="success">/view/login/login.jsp</result>
+		</action>
     </package>
 </struts>
