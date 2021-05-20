@@ -14,5 +14,11 @@
        <action name="logout" class="action.LogoutAction" method="logout">
 			<result name="success">/view/login/login.jsp</result>
 		</action>
+
+		 <!-- リストアクション -->
+       <action name="list" class="action.ListAction" method="execute">
+			<result name="success">/view/list/list.jsp</result>
+		</action>
+
     </package>
 </struts>
