@@ -1,24 +1,45 @@
 package action;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionMapping;
-
-import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
 import entity.Answer;
 import entity.Question;
+import lombok.Getter;
+import lombok.Setter;
 import util.DBUtil;
 
 public class ListAction extends ActionSupport{
 
-	public String excute(Action action, ActionForm form, ActionMapping mapping, HttpServletRequest request, HttpServletResponse response){
+	private static final long serialVersionUID = 1L;
+
+	@Getter
+	@Setter
+	private int qid;
+
+	@Getter
+	@Setter
+	private String question;
+
+	@Getter
+	@Setter
+	private int aid;
+
+	@Getter
+	@Setter
+	private int questions_id;
+
+	@Getter
+	@Setter
+	private String answer;
+
+	public String excute() throws SQLException{
+		String ret = null;
+
 		//DB接続
 		EntityManager em = DBUtil.createEntityManager();
 
@@ -29,9 +50,22 @@ public class ListAction extends ActionSupport{
 		//DBとの接続を閉じる
 		em.close();
 
-		request.setAttribute("q_list", questions);
-		request.setAttribute("ca_list", answers);
+		if(question != null && qid != 0) {
+			for(int i = 0; i < questions.size(); i++) {
+				qid = questions.get(i).getId();
+				question = questions.get(i).getQuestion();
+				ret = SUCCESS;
+			}
+		}
 
-	    return SUCCESS;
+		if(answer != null && aid != 0) {
+			for(int i = 0; i < answers.size(); i++) {
+				aid = answers.get(i).getId();
+				questions_id = answers.get(i).getQuestions_id();
+				answer = answers.get(i).getAnswer();
+				ret = SUCCESS;
+			}
+		}
+		return ret;
 	}
 }

@@ -6,6 +6,11 @@
     <!-- アクションのパッケージ定義 -->
     <package name="Struts" extends="struts-default">
         <!-- ログインアクション -->
+
+        <action name="login">
+			<result>/view/login/login.jsp</result>
+		</action>
+
         <action name="login" class="action.LoginAction" method="execute">
             <result name="success">/view/top/top.jsp</result>
              <result name="error">/view/login/login.jsp</result>
@@ -16,7 +21,7 @@
 		</action>
 
 		 <!-- リストアクション -->
-       <action name="list" class="action.ListAction" method="execute">
+      	<action name="list" class="action.ListAction" method="execute">
 			<result name="success">/view/list/list.jsp</result>
 		</action>
 

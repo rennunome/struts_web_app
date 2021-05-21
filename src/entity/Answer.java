@@ -14,7 +14,6 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
 @NamedQueries({
 	@NamedQuery(
 			name = "findAllAnswerInfo",
@@ -22,6 +21,7 @@ import lombok.Setter;
 			)
 })
 
+@Entity
 @Table(name="correct_answers")
 public class Answer {
 

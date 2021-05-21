@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+@Table(name="questions")
 @NamedQueries({
 	@NamedQuery(
 			name = "findAllQuestionInfo",
@@ -22,7 +22,7 @@ import lombok.Setter;
 			)
 })
 
-@Table(name="questions")
+@Entity
 public class Question {
 
 	@Getter
