@@ -17,7 +17,7 @@ public class LogoutAction implements SessionAware{
 
 	public String logout(){
 	    if(sessionMap!=null){
-	        sessionMap.invalidate();
+	        sessionMap.clear();
 	    }
 	    return "success";
 	}

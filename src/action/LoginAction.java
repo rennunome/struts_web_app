@@ -2,29 +2,27 @@ package action;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.EntityManager;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.dispatcher.SessionMap;
-import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import entity.User;
 import util.DBUtil;
 
-public class LoginAction extends ActionSupport implements SessionAware{
+public class LoginAction extends ActionSupport{
 
-	private SessionMap<String,Object> sessionMap;
+	private static final long serialVersionUID = 1L;
 
-	@Override
-	public void setSession(Map<String, Object> map) {
+	//implements SessionAware
 
-	    sessionMap = (SessionMap)map;
-	}
+//	private SessionMap<String,Object> sessionMap;
+//
+//	@Override
+//	public void setSession(Map<String, Object> map) {
+//
+//	    sessionMap = (SessionMap)map;
+//	}
 
 	private int id;//jspファイルから受け取る値の定義　※jspでの定義と変数名を合わせる
 	private String password;//jspファイルから受け取る値の定義　※jspでの定義と変数名を合わせる
@@ -43,7 +41,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
 		this.password = password;
 	}
 
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException{//ActionSupportクラスのexecuteメソッドのオーバーライド
+	public String execute() throws SQLException{//ActionSupportクラスのexecuteメソッドのオーバーライド
 		String ret = ERROR;//戻り値retに初期値ERRORを代入    ERRORはActionSupportが実装しているActionインターフェースに定義されている定数ERROR=“error”
 
 		//DB接続
@@ -59,13 +57,14 @@ public class LoginAction extends ActionSupport implements SessionAware{
 		//DBとの接続を閉じる
 		em.close();
 
-		if(password != "" && id != 0) {
-			for(int i = 0; i < users.size(); i++) {//dao.selectでデータベースにアクセス(login.jspから送られたname、passwordを引数)して、結果をdtoに代入
-				if(id == users.get(i).getId()) {//login.jspから送られてきたidとデータベースから取得したidが正しい場合、
+		if(password != null && id != 0) {
+			for(int i = 0; i < users.size(); i++) {
+				int qid = users.get(i).getId();//dao.selectでデータベースにアクセス(login.jspから送られたname、passwordを引数)して、結果をdtoに代入
+				if(id == qid) {//login.jspから送られてきたidとデータベースから取得したidが正しい場合、
 					if(password.equals(users.get(i).getPassword())){//login.jspから送られてきたpasswordとデータベースから取得したpasswordが正しい場合、
 						ret = SUCCESS;//戻り値retにSUCCESSを代入する　SUCCESSはActionSupportが実装しているActionインターフェースに定義されている定数SUCCESS=“success”
-						byte admin = users.get(i).getAdminFlag();
-						String name = users.get(i).getName();
+//						byte admin = users.get(i).getAdminFlag();
+//						String name = users.get(i).getName();
 
 						/*セッション情報に追加
 						(仮)1
