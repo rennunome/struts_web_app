@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ page import="entity.Question"%>
 <%@ page import="entity.Answer"%>
@@ -19,30 +18,26 @@
 		</s:form>
 </div>
 <br>
-	<%-- <%
-	for (int i = 0; i < questions_count.length; i++) {
-	%> --%>
-	<%-- <c:forEach var="i" begin="1" end="${questions_count}" step="1"> --%>
+<s:iterator value="%{questions}" begin= "0" end="%{questions.size() -1}" status="qsta">
 	問題：
-	<s:property value="qid" />
-	<s:property value="question" />
+	<s:property value="questions[#qsta.index].id"/>
+	<s:property value="questions[#qsta.index].question" />
 	<br />
-	<%-- <c:forEach var="j" begin="1" end="${answers_count}" step="1"> --%>
-	<s:iterator value="%{answers_count}" var="aid" status="sta">
-		<%-- <c:if test="${qid == questions_id}"> --%>
-			答え：<s:property value="aid" />
-			<s:property value="answer" />
+	<s:iterator value="%{answers}" begin= "0" end="%{answers.size() -1}" status="asta">
+		<s:if test="%{questions[#qsta.index].id == answers[#asta.index].questions_id}">
+		答え：<s:property value="answers[#asta.index].id"/>
+			<s:property value="answers[#asta.index].answer" />
 			<br />
-		<%-- </c:if> --%>
+		</s:if>
+		</s:iterator>
 		<s:form action="edit" method="post">
-			<html:hidden property="answer_id" value="${aid}" />
+			<html:hidden property="answer_id" value="%{answers[#asta.index].id}" />
 			<s:submit value="編集" />
 		</s:form>
 		<s:form action="deleteConfirm" method="post">
-			<html:hidden property="answer_id" value="${aid}" />
+			<html:hidden property="answer_id" value="%{answers[#asta.index].id}" />
 			<s:submit value="削除" />
 		</s:form>
 	</s:iterator>
-	<%-- <% } %> --%>
 </body>
 </html>
