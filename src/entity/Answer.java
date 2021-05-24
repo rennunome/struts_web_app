@@ -14,15 +14,19 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+@Table(name="correct_answers")
 @NamedQueries({
 	@NamedQuery(
 			name = "findAllAnswerInfo",
-			query = "SELECT a FROM Answer AS a ORDER BY a.id DESC"
-			)
+			query = "SELECT a FROM Answer AS a"
+			),
+	@NamedQuery(
+            name = "getAnswersCount",
+            query = "SELECT COUNT(a) FROM Answer AS a"
+            )
 })
 
 @Entity
-@Table(name="correct_answers")
 public class Answer {
 
 	@Getter

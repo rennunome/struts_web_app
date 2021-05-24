@@ -19,7 +19,7 @@
 			<% byte admin = (byte)ActionContext.getContext().getSession().get("user_admin");%>
 			<% if(admin == 1) {%> --%>
 			<s:form action="list"  method="POST">
-			<s:submit type="input"  value="問題・答えを登録する ＞" />
+			<s:submit value="問題・答えを登録する ＞" />
 			</s:form>
 			<s:form action="test"  method="post">
 			<input type="submit" value="テストをする ＞" style="width: 250px">

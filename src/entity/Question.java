@@ -18,8 +18,12 @@ import lombok.Setter;
 @NamedQueries({
 	@NamedQuery(
 			name = "findAllQuestionInfo",
-			query = "SELECT q FROM Question AS q ORDER BY q.id DESC"
-			)
+			query = "SELECT q FROM Question AS q"
+			),
+	@NamedQuery(
+            name = "getQuestionsCount",
+            query = "SELECT COUNT(q) FROM Question AS q"
+            )
 })
 
 @Entity
