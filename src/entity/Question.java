@@ -21,6 +21,10 @@ import lombok.Setter;
 			query = "SELECT q FROM Question AS q"
 			),
 	@NamedQuery(
+			name = "findAllQuestionInfoByTimeCreated",
+			query = "SELECT q FROM Question AS q ORDER BY q.created_at ASC"
+			),
+	@NamedQuery(
             name = "getQuestionsCount",
             query = "SELECT COUNT(q) FROM Question AS q"
             )

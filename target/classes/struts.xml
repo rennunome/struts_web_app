@@ -25,5 +25,21 @@
 			<result name="success">/view/list/list.jsp</result>
 		</action>
 
+		<!-- レジスターアクション -->
+		<action name="register">
+			<result>/view/register/register.jsp</result>
+		</action>
+
+		<action name="registerConfirm" class="action.RegisterConfirmAction" method="execute">
+			<result name="success">/view/register/registerConfirm.jsp</result>
+			<result name="error">/view/register/register.jsp</result>
+		</action>
+
+		<action name="registerDb" class="action.RegisterDbAction" method="execute">
+			<result name="success" type= "redirect">
+			<param name = "list">/view/list/list.jsp</param>
+			</result>
+		</action>
+
     </package>
 </struts>
