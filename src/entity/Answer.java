@@ -28,7 +28,6 @@ import lombok.Setter;
 
 @Entity
 public class Answer {
-
 	@Getter
 	@Setter
 	@Id

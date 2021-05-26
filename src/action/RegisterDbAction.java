@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -45,8 +44,8 @@ public class RegisterDbAction extends ActionSupport{
 		em.persist(q);
 		em.getTransaction().commit();
 
-		@Transactional
-		public void insertWithQuery(a){
+//		@Transactional
+//		public void insertWithQuery(a){
 
 			//last inserted idを取得
 			List<Question> question = em.createNamedQuery("findAllQuestionInfoByTimeCreated", Question.class).getResultList();
@@ -62,35 +61,29 @@ public class RegisterDbAction extends ActionSupport{
 			q_id.add(qid);
 			question_id = q_id.get(0);
 
-			//        Query questions_id = em.createNativeQuery("insert into correct_answers where questions_id1 = ?1");
+			System.out.println("アンサーレングスは" + answer.length); //アンサーレングスは2
 
-			for(int k =0; k < answer.length; k++) {
-				em.createNativeQuery("insert into correct_answers (answer, questions_id, created_at) values (?, ?, ?)")
-				.setParameter(1, answer[k])
-				.setParameter(2, question_id)
-				.setParameter(3, currentTime)
-				.executeUpdate();
-			}
-			//        for(int k =0; k < answer.length -1; k++) {
-			////        		questions_id.setParameter(1, question_id);
-			////        		ans.setParameter(1, answer);
-			//        	a.setQuestions_id(question_id);
-			//        	a.setAnswer(answer[k]);
-			//        	a.setCreated_at(currentTime);
-			//        	em.getTransaction().begin();
-			//        	em.persist(a);
-			//        	em.getTransaction().commit();
-			//        }
+//			for(int k =0; k < answer.length; k++) {
+//				System.out.println(answer[k]); //b
+//				Query query = (Query)em.createNativeQuery("insert into correct_answers (answer, questions_id, created_at) values (?1, ?2, ?3)");
+//						query.setParameter(1, answer[k]);
+//						query.setParameter(2, question_id);
+//				        query.setParameter(3, currentTime);
+//				        em.getTransaction().begin();
+//				        em.persist(a);
+//				        em.getTransaction().commit();
+//				        }
 
-			//        for(int n =0; n < answer.length; n++) {
-			//        	a.setQuestions_id(question_id);
-			//        	a.setAnswer(answer[n]);
-			//        	a.setCreated_at(currentTime);
-			//        	em.getTransaction().begin();
-			//        	em.persist(a);
-			//            em.getTransaction().commit();
-			//        }
-		}
+					//答えが1つしか登録されないパターン
+			        for(int k =0; k < answer.length; k++) {
+			        	a.setQuestions_id(question_id);
+			        	a.setAnswer(answer[k]);
+			        	a.setCreated_at(currentTime);
+			        	em.getTransaction().begin();
+			        	em.persist(a);
+			        	em.getTransaction().commit();
+			        }
+//		}
 		em.close();
 		return SUCCESS;
 	}
