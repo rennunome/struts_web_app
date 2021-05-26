@@ -45,5 +45,9 @@
 			<result name="success">/view/list/list.jsp</result>
 		</action>
 
+		<action name="deleteConfirm" class="action.DeleteConfirmAction" method="execute">
+			<result name="success">/view/delete/deleteConfirm.jsp</result>
+		</action>
+
     </package>
 </struts>

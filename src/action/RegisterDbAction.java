@@ -65,7 +65,7 @@ public class RegisterDbAction extends ActionSupport{
 
 //			for(int k =0; k < answer.length; k++) {
 //				System.out.println(answer[k]); //b
-//				Query query = (Query)em.createNativeQuery("insert into correct_answers (answer, questions_id, created_at) values (?1, ?2, ?3)");
+//				Query query = em.createNativeQuery("insert into correct_answers (answer, questions_id, created_at) values (?1, ?2, ?3)");
 //						query.setParameter(1, answer[k]);
 //						query.setParameter(2, question_id);
 //				        query.setParameter(3, currentTime);
@@ -73,16 +73,15 @@ public class RegisterDbAction extends ActionSupport{
 //				        em.persist(a);
 //				        em.getTransaction().commit();
 //				        }
-
+					em.getTransaction().begin();
 					//答えが1つしか登録されないパターン
 			        for(int k =0; k < answer.length; k++) {
 			        	a.setQuestions_id(question_id);
 			        	a.setAnswer(answer[k]);
 			        	a.setCreated_at(currentTime);
-			        	em.getTransaction().begin();
 			        	em.persist(a);
-			        	em.getTransaction().commit();
 			        }
+			        em.getTransaction().commit();
 //		}
 		em.close();
 		return SUCCESS;

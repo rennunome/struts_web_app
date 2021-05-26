@@ -29,15 +29,17 @@
 			<s:property value="answers[#asta.index].answer" />
 			<br />
 		</s:if>
-		</s:iterator>
 		<s:form action="edit" method="post">
-			<html:hidden property="answer_id" value="%{answers[#asta.index].id}" />
+			<!-- 変更前 -->
+			<html:hidden property="questions_id" value="%{answers[#asta.index].questions_id}" />
 			<s:submit value="編集" />
 		</s:form>
 		<s:form action="deleteConfirm" method="post">
-			<html:hidden property="answer_id" value="%{answers[#asta.index].id}" />
+			<!-- 変更後 -->
+			<s:property value="answers[#asta.index].questions_id" />
 			<s:submit value="削除" />
 		</s:form>
+		</s:iterator>
 	</s:iterator>
 </body>
 </html>
