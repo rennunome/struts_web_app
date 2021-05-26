@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -26,54 +27,71 @@ public class RegisterDbAction extends ActionSupport{
 	@Setter
 	private String[] answer;
 
+	//DBとの接続
+	EntityManager em = DBUtil.createEntityManager();
+
+	//インスタンス化
+	Question q = new Question();
+	Answer a = new Answer();
+
+	Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+
 	public String execute() throws SQLException{
 
-		//DBとの接続
-        EntityManager em = DBUtil.createEntityManager();
+		q.setQuestion(question);
+		q.setCreated_at(currentTime);
 
-        //インスタンス化
-        Question q = new Question();
-        Answer a = new Answer();
+		em.getTransaction().begin();
+		em.persist(q);
+		em.getTransaction().commit();
 
-        Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+		@Transactional
+		public void insertWithQuery(a){
 
-        q.setQuestion(question);
-        q.setCreated_at(currentTime);
+			//last inserted idを取得
+			List<Question> question = em.createNamedQuery("findAllQuestionInfoByTimeCreated", Question.class).getResultList();
 
-        em.getTransaction().begin();
-        em.persist(q);
-        em.getTransaction().commit();
+			int qid = 0;
+			int question_id = 0;
 
-        //last inserted idを取得
-        List<Question> question = em.createNamedQuery("findAllQuestionInfoByTimeCreated", Question.class).getResultList();
+			for(int i = 0; i < question.size(); i++) {
+				qid = question.get(i).getId();
+			}
 
-        int qid = 0;
-        int question_id = 0;
+			ArrayList<Integer> q_id = new ArrayList<Integer>();
+			q_id.add(qid);
+			question_id = q_id.get(0);
 
-        for(int i = 0; i < question.size(); i++) {
-        	qid = question.get(i).getId();
-        }
+			//        Query questions_id = em.createNativeQuery("insert into correct_answers where questions_id1 = ?1");
 
-        ArrayList<Integer> q_id = new ArrayList<Integer>();
-        q_id.add(qid);
+			for(int k =0; k < answer.length; k++) {
+				em.createNativeQuery("insert into correct_answers (answer, questions_id, created_at) values (?, ?, ?)")
+				.setParameter(1, answer[k])
+				.setParameter(2, question_id)
+				.setParameter(3, currentTime)
+				.executeUpdate();
+			}
+			//        for(int k =0; k < answer.length -1; k++) {
+			////        		questions_id.setParameter(1, question_id);
+			////        		ans.setParameter(1, answer);
+			//        	a.setQuestions_id(question_id);
+			//        	a.setAnswer(answer[k]);
+			//        	a.setCreated_at(currentTime);
+			//        	em.getTransaction().begin();
+			//        	em.persist(a);
+			//        	em.getTransaction().commit();
+			//        }
 
-        for(int j = 0; j < q_id.size(); j++) {
-        question_id = q_id.get(0);
-        }
-
-        System.out.println("アンサーレングスは" + answer.length); //2
-
-        for(int k =0; k < answer.length; k++) {
-        a.setCreated_at(currentTime);
-		a.setQuestions_id(question_id);
-        a.setAnswer(answer[k]);
-        }
-        em.getTransaction().begin();
-        em.persist(a);
-        em.getTransaction().commit();
-        em.close();
-
+			//        for(int n =0; n < answer.length; n++) {
+			//        	a.setQuestions_id(question_id);
+			//        	a.setAnswer(answer[n]);
+			//        	a.setCreated_at(currentTime);
+			//        	em.getTransaction().begin();
+			//        	em.persist(a);
+			//            em.getTransaction().commit();
+			//        }
+		}
+		em.close();
 		return SUCCESS;
-
 	}
 }

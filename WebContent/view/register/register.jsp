@@ -12,13 +12,13 @@
 <script src="@{webapp/js/addForm.js}"></script>
 </head>
 <body>
+<s:form method="POST" action="registerConfirm" id="qaForm">
 <s:if test="%{error_message_question != null}">
 <s:property value="error_message_question" />
 </s:if>
 <s:if test="%{error_message_answer != null}">
 <s:property value="error_message_answer" />
 </s:if>
-<s:form method="POST" action="registerConfirm" id="qaForm">
 問題：
 <s:textfield name="question"/><br />
 答え：

@@ -41,6 +41,12 @@ public class Answer {
 	@Column(name="questions_id")
 	private int questions_id;
 
+//	@Getter
+//	@Setter
+//	@ManyToOne
+//	@JoinColumn(name="id")
+//	private Question question;
+
 	@Getter
 	@Setter
 	@Column(name="answer")
