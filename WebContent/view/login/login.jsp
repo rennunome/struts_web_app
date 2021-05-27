@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %><!-- ページの設定 -->
 <%@ taglib prefix="s" uri="/struts-tags" %><!-- struts2のカスタムタグ(s:formとか)を使えるようにしている -->
+
 <html>
 <head>
   <meta charset = "UTF-8">

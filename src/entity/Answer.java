@@ -28,7 +28,6 @@ import lombok.Setter;
 
 @Entity
 public class Answer {
-
 	@Getter
 	@Setter
 	@Id
@@ -40,6 +39,12 @@ public class Answer {
 	@Setter
 	@Column(name="questions_id")
 	private int questions_id;
+
+//	@Getter
+//	@Setter
+//	@ManyToOne
+//	@JoinColumn(name="id")
+//	private Question question;
 
 	@Getter
 	@Setter
