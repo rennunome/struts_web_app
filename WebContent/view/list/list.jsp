@@ -30,13 +30,12 @@
 			<br />
 		</s:if>
 		<s:form action="edit" method="post">
-			<!-- 変更前 -->
-			<html:hidden property="questions_id" value="%{answers[#asta.index].questions_id}" />
+			<s:textfield type="hidden" property="questions_id" value="%{answers[#asta.index].questions_id}" />
 			<s:submit value="編集" />
 		</s:form>
 		<s:form action="deleteConfirm" method="post">
-			<!-- 変更後 -->
-			<s:property value="answers[#asta.index].questions_id" />
+			<s:hidden name="questions_id" value="%{answers[#asta.index].questions_id}" />
+			<s:hidden name="answers_id" value="%{answers[#asta.index].id}" />
 			<s:submit value="削除" />
 		</s:form>
 		</s:iterator>
