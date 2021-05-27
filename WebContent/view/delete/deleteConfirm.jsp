@@ -12,19 +12,10 @@
 </head>
 <body>
 	<s:form action="delete" method="POST">
-	<!-- 出力される↓ -->
 問題：<s:textfield name="questions_id" value="%{questions_id}" />
-	<!-- 白紙のテキストフィールドが出力される↓ -->
-		<s:textfield name="question" value="%{question}" />
-		<!-- 出力されない↓ -->
-		<s:property value="%{question}" />
-		<br />
-		<!-- 出力される↓ -->
+		<s:textfield name="question" value="%{question}" /><br />
 答え：<s:textfield name="answers_id" value="%{answers_id}" />
-		<!-- 白紙のテキストフィールドが出力される↓ -->
-		<s:textfield name="answer" value="%{answer}" />
-		<!-- 出力されない↓ -->
-		<s:property value="%{answer}" />
+		<s:textfield name="answer" value="%{answer}" /><br />
 		<!--答えが単数しか登録されないためiteratorの記述はコメントアウト -->
 		<%-- <s:iterator value="a" begin= "0" end="%{a.length -1}" status="asta"> --%>
 		<%-- </s:iterator> --%>

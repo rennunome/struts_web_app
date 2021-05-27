@@ -27,7 +27,7 @@ import lombok.Setter;
 	@NamedQuery(
             name = "getQuestionsCount",
             query = "SELECT COUNT(q) FROM Question AS q"
-            )
+            ),
 })
 
 @Entity

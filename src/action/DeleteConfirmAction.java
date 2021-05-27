@@ -52,11 +52,8 @@ public class DeleteConfirmAction extends ActionSupport {
 				//DBとの接続を閉じる
 				em.close();
 
-				String question = q.getQuestion();
-				String answer = a.getAnswer();
-
-				System.out.println("クエスチョンは" + question); //出力される
-				System.out.println("アンサーは" + answer); //出力される
+				this.question = q.getQuestion();
+				this.answer = a.getAnswer();
 
 		return SUCCESS;
 	}
