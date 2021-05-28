@@ -5,14 +5,32 @@ import com.opensymphony.xwork2.ActionSupport;
 import lombok.Getter;
 import lombok.Setter;
 
-public class RegisterConfirmAction extends ActionSupport{
+//@Validations(
+//	    visitorFields = {
+//	        @VisitorFieldValidator(fieldName="vo", appendPrefix=true)
+//	    }
+//	)
+
+//@Action("editConfirm")
+public class EditConfirmAction extends ActionSupport{
+
+	@Getter
+	@Setter
+	private int questions_id;
 
 	@Getter
 	@Setter
 	private String question;
+
 	@Getter
 	@Setter
-	private String[] answer;
+	//後にint[]に変更
+	private int answers_id;
+
+	@Getter
+	@Setter
+	//後にString[]に変更
+	private String answer;
 
 	@Getter
 	@Setter
@@ -39,15 +57,18 @@ public class RegisterConfirmAction extends ActionSupport{
 			return ret;
 		}
 
-		if (answer != null) {
-			for (int i = 0; i < answer.length; i++) {
-				if (answer[i] != null && answer[i].length() > 200) {
+		if (answer != null && answer.length() > 200) {
+//			for (int i = 0; i < answer.length; i++) {
+//				if (answer[i] != null && answer[i].length() > 200) {
 					this.error_message_answer = "200文字以上は入力できません。";
 					return ret;
 				}
-			}
-		}
+//			}
+//		}
 		ret = SUCCESS;
 		return ret;
-	}
+		}
+
+//@Getter @Setter
+//private SampleVO vo;
 }

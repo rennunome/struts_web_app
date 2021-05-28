@@ -3,14 +3,14 @@
  */
 var i = 1 ;
 function addForm() {
-  var input_data = document.createElement('input');
+  var input_data = document.createElement('textfield');
   input_data.type = 'text';
   input_data.id = 'answer' + i;
 input_data.name = 'answer';
   var parent = document.getElementById('form_area');
   parent.appendChild(input_data);
 
-  var input_data2 = document.createElement('input');
+  var input_data2 = document.createElement('textfield');
   input_data2.type = 'hidden';
   input_data2.id = 'answer_id' + i;
   input_data2.name = 'answer_id';

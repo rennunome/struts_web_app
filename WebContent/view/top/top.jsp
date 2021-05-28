@@ -12,6 +12,7 @@
 <title>Top</title>
 </head>
 <body>
+<h3>トップ画面</h3>
 <div align="center">
 			<!-- セッションに詰めたadmin_flag情報 -->
 			<%-- <p>${session.user_admin}</p>

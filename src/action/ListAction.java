@@ -25,6 +25,7 @@ public class ListAction extends ActionSupport{
 	@Setter
 	private List<Answer> answers;
 
+	@Override
 	public String execute() throws SQLException{
 		String ret = SUCCESS;
 
