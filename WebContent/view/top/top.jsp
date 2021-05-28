@@ -23,13 +23,13 @@
 			<s:submit value="問題・答えを登録する ＞" />
 			</s:form>
 			<s:form action="test"  method="post">
-			<input type="submit" value="テストをする ＞" style="width: 250px">
+			<s:submit type="submit" value="テストをする ＞" />
 			</s:form>
 			<s:form action="history"  method="post">
-			<input type="submit" value="過去の採点結果をみる ＞" style="width: 250px">
+			<s:submit type="submit" value="過去の採点結果をみる ＞" />
 			</s:form>
 			<s:form action="userlist"  method="post">
-			<input type="submit" value="ユーザを追加・編集する＞" style="width: 250px">
+			<s:submit type="submit" value="ユーザを追加・編集する＞" />
 			</s:form>
 
 			<!-- 画面分岐 -->

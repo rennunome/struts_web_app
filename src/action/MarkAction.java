@@ -3,50 +3,47 @@ package action;
 import java.sql.SQLException;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import entity.Answer;
-import entity.Question;
 import lombok.Getter;
 import lombok.Setter;
 import util.DBUtil;
 
-public class EditAction extends ActionSupport{
+public class MarkAction extends ActionSupport{
 
 	@Getter
 	@Setter
-	private int questions_id;
-
-	@Getter
-	@Setter
-	//後でint[]に修正
-	private int answers_id;
+	private String test_answer;
 
 	@Getter
 	@Setter
 	private String question;
 
-	@Getter
-	@Setter
-	//後でString[]に修正
-	private String answer;
-
-	@Override
 	public String execute() throws SQLException{
 
 		//DB接続
 		EntityManager em = DBUtil.createEntityManager();
 
-		Question q = em.find(Question.class, this.questions_id);
-		Answer a = em.find(Answer.class, this.answers_id);
+		String jql = "";
 
-		question = q.getQuestion();
-		answer = a.getAnswer();
+		Query query = em.createNativeQuery(jql);
+
+		//loop 1: test_answers分
+
+		//loop 2: questions_id分
+
+		//if: questions_id, db questions_idの比較
+
+		//loop 3: calist分
+
+		//if: calist.get(k).getAnswer(), test_answerの比較
 
 		//DBとの接続を閉じる
 		em.close();
 
 		return SUCCESS;
+
 	}
 }

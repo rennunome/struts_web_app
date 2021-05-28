@@ -31,8 +31,6 @@
 		答え：<s:property value="answers[#asta.index].id"/>
 			<s:property value="answers[#asta.index].answer" />
 			<br />
-		</s:if>
-		</s:iterator>
 		<s:form action="edit" method="post">
 			<s:hidden name="questions_id" value="%{answers[#asta.index].questions_id}" />
 			<s:hidden name="answers_id" value="%{answers[#asta.index].id}" />
@@ -43,6 +41,8 @@
 			<s:hidden name="answers_id" value="%{answers[#asta.index].id}" />
 			<s:submit value="削除" />
 		</s:form>
+		</s:if>
+	</s:iterator>
 	</s:iterator>
 </body>
 </html>

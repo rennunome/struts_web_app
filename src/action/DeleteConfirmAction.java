@@ -50,11 +50,11 @@ public class DeleteConfirmAction extends ActionSupport {
 				Answer a = em.find(Answer.class, answers_id);
 				Question q = em.find(Question.class, questions_id);
 
-				//DBとの接続を閉じる
-				em.close();
-
 				this.question = q.getQuestion();
 				this.answer = a.getAnswer();
+
+				//DBとの接続を閉じる
+				em.close();
 
 		return SUCCESS;
 	}
