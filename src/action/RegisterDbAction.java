@@ -35,6 +35,7 @@ public class RegisterDbAction extends ActionSupport{
 
 	Timestamp currentTime = new Timestamp(System.currentTimeMillis());
 
+	@Override
 	public String execute() throws SQLException{
 
 		q.setQuestion(question);

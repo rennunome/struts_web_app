@@ -4,7 +4,10 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
     <!-- アクションのパッケージ定義 -->
-    <package name="Struts" extends="struts-default">
+    <package name="Struts" extends="struts-default" >
+
+      <!-- <interceptor-stack name="defaultInterceptorsStack" />
+         <interceptor-ref name="validation" /> -->
 
         <!-- login.jspへ -->
         <action name="login">
@@ -20,6 +23,11 @@
 		 <!-- logout action -->
        <action name="logout" class="action.LogoutAction" method="logout">
 			<result name="success">/view/login/login.jsp</result>
+		</action>
+
+		 <!-- top.jspへ -->
+        <action name="top">
+			<result>/view/top/top.jsp</result>
 		</action>
 
 		 <!-- list action -->
@@ -61,5 +69,29 @@
 		<action name="list" class="action.ListAction" method="execute">
 			<result name="success">/view/list/list.jsp</result>
 		</action>
+
+		<!-- edit action -->
+		<action name="edit" class="action.EditAction" method="execute">
+			<result name="success">/view/edit/edit.jsp</result>
+		</action>
+
+		<!-- edit (validation) action -->
+		<action name="editConfirm" class="action.EditConfirmAction" method="execute">
+			<result name="success">/view/edit/editConfirm.jsp</result>
+			<result name="error" type="chain">edit</result>
+		</action>
+		<action name="edit" class="action.EditAction" method="execute">
+			<result name="success">/view/edit/edit.jsp</result>
+		</action>
+
+		<!-- editdb action実行後、list actionへ -->
+		<action name="editDb" class="action.EditDbAction" method="execute">
+			<result name="success" type= "chain">list</result>
+		</action>
+		<action name="list" class="action.ListAction" method="execute">
+			<result name="success">/view/list/list.jsp</result>
+		</action>
+
+
     </package>
 </struts>

@@ -22,6 +22,7 @@ public class DeleteAction extends ActionSupport{
 	@Setter
 	private int answers_id;
 
+	@Override
 	public String execute() throws SQLException{
 
 		//DB接続

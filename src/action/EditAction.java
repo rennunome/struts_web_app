@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 import util.DBUtil;
 
-public class DeleteConfirmAction extends ActionSupport {
+public class EditAction extends ActionSupport{
 
 	@Getter
 	@Setter
@@ -20,15 +20,8 @@ public class DeleteConfirmAction extends ActionSupport {
 
 	@Getter
 	@Setter
+	//後でint[]に修正
 	private int answers_id;
-
-	@Getter
-	@Setter
-	private Answer a;
-
-	@Getter
-	@Setter
-	private Question q;
 
 	@Getter
 	@Setter
@@ -36,25 +29,26 @@ public class DeleteConfirmAction extends ActionSupport {
 
 	@Getter
 	@Setter
+	//後でString[]に修正
 	private String answer;
-
-	private static final long serialVersionUID = 1L;
 
 	@Override
 	public String execute() throws SQLException{
 
-				//DB接続
-				EntityManager em = DBUtil.createEntityManager();
+		//DB接続
+		EntityManager em = DBUtil.createEntityManager();
 
-				//DBから情報を取得
-				Answer a = em.find(Answer.class, answers_id);
-				Question q = em.find(Question.class, questions_id);
+		Question q = em.find(Question.class, this.questions_id);
+		Answer a = em.find(Answer.class, this.answers_id);
 
-				//DBとの接続を閉じる
-				em.close();
+		//DBとの接続を閉じる
+		em.close();
 
-				this.question = q.getQuestion();
-				this.answer = a.getAnswer();
+		question = q.getQuestion();
+		q.setQuestion(question);
+
+		answer = a.getAnswer();
+		a.setAnswer(answer);
 
 		return SUCCESS;
 	}

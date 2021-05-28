@@ -41,6 +41,7 @@ public class LoginAction extends ActionSupport{
 		this.password = password;
 	}
 
+	@Override
 	public String execute() throws SQLException{//ActionSupportクラスのexecuteメソッドのオーバーライド
 		String ret = ERROR;//戻り値retに初期値ERRORを代入    ERRORはActionSupportが実装しているActionインターフェースに定義されている定数ERROR=“error”
 
