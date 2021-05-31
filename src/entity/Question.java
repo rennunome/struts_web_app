@@ -10,11 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import lombok.Getter;
 import lombok.Setter;
 
-@Table(name="questions")
+@Table(name="questions", uniqueConstraints={@UniqueConstraint(columnNames={"question"})})
 @NamedQueries({
 	@NamedQuery(
 			name = "findAllQuestionInfo",
@@ -42,7 +43,7 @@ public class Question {
 
 	@Getter
 	@Setter
-	@Column(name="question")
+	@Column(name="question", unique=true)
 	private String question;
 
 
