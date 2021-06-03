@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -71,14 +72,12 @@ public class MarkAction extends ActionSupport{
 					//loop 3: calist分
 					for(int k = 0; k < calist.size(); k++) {
 						//if: calist.get(k).getAnswer(), test_answerの比較
-						if(test_answer[k] == calist.get(k).getAnswer()) {
+						if(test_answer[k].equals(calist.get(k).getAnswer())) {
 							score++;
 						}
 					}
 				}
 			}
-		//DBとの接続を閉じる
-		em.close();
 
 		//整数スコア
 		scr = (int)score;
@@ -94,9 +93,22 @@ public class MarkAction extends ActionSupport{
 		//user id取得
 		@SuppressWarnings("unchecked")
 		Map<String, Object> session = (Map<String, Object>) ActionContext.getContext().get("session");
-		uid = (int)session.get("id"); //null
+		uid = (int)session.get("user_id");
 		//user name取得
-		name = (String) session.get("name");
+		name = (String) session.get("user_name");
+
+		em.getTransaction().begin();
+
+		//setUserId, setPoint, setCreatedAt
+		String jql = "insert into histories (user_id, point, created_at) values (?1, ?2, ?3)";
+		Query query = em.createNativeQuery(jql);
+				query.setParameter(1, uid);
+				query.setParameter(2, total);
+		        query.setParameter(3, current_time);
+		        query.executeUpdate();
+
+		//DB接続解除
+		em.getTransaction().commit();
 
 		return SUCCESS;
 
