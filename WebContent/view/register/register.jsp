@@ -27,6 +27,8 @@
 答え：
 <div id="form_area">
 <s:textfield name="answer" id="answer" class="answer" /><br />
+<!-- 2nd answer input -->
+<s:textfield name="answer" id="answer" class="answer" />
 </div>
 <!-- 追加ボタン -->
 <!-- 以下全て機能せず -->

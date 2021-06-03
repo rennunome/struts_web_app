@@ -12,8 +12,12 @@
 <body>
 <h3>テスト結果画面</h3>
 <!-- username さん -->
+<s:property value="#session.name" />さん<br />
 <!-- questions_id.length 問中 score 問正解です。 -->
+<s:property value="qs" />問中<s:property value="scr" />問正解です。<br />
 <!-- total 点でした。 -->
+<s:property value="total" />点でした。<br />
 <!-- timestamp -->
+<s:property value="current_time" />
 </body>
 </html>
