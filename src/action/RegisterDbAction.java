@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -45,8 +46,6 @@ public class RegisterDbAction extends ActionSupport{
 		em.persist(q);
 		em.getTransaction().commit();
 
-//		@Transactional
-//		public void insertWithQuery(a){
 
 			//last inserted idを取得
 			List<Question> question = em.createNamedQuery("findAllQuestionInfoByTimeCreated", Question.class).getResultList();
@@ -62,29 +61,18 @@ public class RegisterDbAction extends ActionSupport{
 			q_id.add(qid);
 			question_id = q_id.get(0);
 
-			System.out.println("アンサーレングスは" + answer.length); //アンサーレングスは2
+			em.getTransaction().begin();
 
-//			for(int k =0; k < answer.length; k++) {
-//				System.out.println(answer[k]); //b
-//				Query query = em.createNativeQuery("insert into correct_answers (answer, questions_id, created_at) values (?1, ?2, ?3)");
-//						query.setParameter(1, answer[k]);
-//						query.setParameter(2, question_id);
-//				        query.setParameter(3, currentTime);
-//				        em.getTransaction().begin();
-//				        em.persist(a);
-//				        em.getTransaction().commit();
-//				        }
-					em.getTransaction().begin();
-					//答えが1つしか登録されないパターン
-			        for(int k =0; k < answer.length; k++) {
-			        	a.setQuestions_id(question_id);
-			        	a.setAnswer(answer[k]);
-			        	a.setCreated_at(currentTime);
-			        	em.persist(a);
-			        }
-			        em.getTransaction().commit();
-//		}
-		em.close();
+			for(int k =0; k < answer.length; k++) {
+				String jql = "insert into correct_answers (answer, questions_id, created_at) values (?1, ?2, ?3)";
+				Query query = em.createNativeQuery(jql);
+						query.setParameter(1, answer[k]);
+						query.setParameter(2, question_id);
+				        query.setParameter(3, currentTime);
+				        query.executeUpdate();
+				        }
+			 em.getTransaction().commit();
+
 		return SUCCESS;
 	}
 }

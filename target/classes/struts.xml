@@ -92,6 +92,15 @@
 			<result name="success">/view/list/list.jsp</result>
 		</action>
 
+		<!-- test action -->
+		<action name="test" class="action.TestAction" method="execute">
+			<result name="success">/view/test/test.jsp</result>
+		</action>
+
+		<!-- mark action -->
+		<action name="mark" class="action.MarkAction" method="execute">
+			<result name="success">/view/test/result.jsp</result>
+		</action>
 
     </package>
 </struts>

@@ -1,27 +1,25 @@
 package action;
 
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import entity.Answer;
 import entity.Question;
 import lombok.Getter;
 import lombok.Setter;
 import util.DBUtil;
 
-public class EditAction extends ActionSupport{
+public class TestAction extends ActionSupport{
+
+	private static final long serialVersionUID = 1L;
 
 	@Getter
 	@Setter
-	private int questions_id;
-
-	@Getter
-	@Setter
-	//後でint[]に修正
-	private int answers_id;
+	private List<Question> questions;
 
 	@Getter
 	@Setter
@@ -29,20 +27,16 @@ public class EditAction extends ActionSupport{
 
 	@Getter
 	@Setter
-	//後でString[]に修正
-	private String answer;
+	private int id;
 
-	@Override
 	public String execute() throws SQLException{
 
 		//DB接続
 		EntityManager em = DBUtil.createEntityManager();
 
-		Question q = em.find(Question.class, this.questions_id);
-		Answer a = em.find(Answer.class, this.answers_id);
-
-		question = q.getQuestion();
-		answer = a.getAnswer();
+		//問題のListをランダムで取得して画面に渡す
+		questions = em.createNamedQuery("findAllQuestionInfo", Question.class).getResultList();
+		Collections.shuffle(questions);
 
 		//DBとの接続を閉じる
 		em.close();

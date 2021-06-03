@@ -23,6 +23,10 @@ import lombok.Setter;
 	@NamedQuery(
             name = "getAnswersCount",
             query = "SELECT COUNT(a) FROM Answer AS a"
+            ),
+	@NamedQuery(
+            name = "findAnswerByQuestionsId",
+            query = "SELECT a FROM Answer AS a WHERE a.questions_id = :questions_id"
             )
 })
 

@@ -2,22 +2,21 @@ package action;
 
 import java.util.Map;
 
-import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
 
 public class LogoutAction implements SessionAware{
 
-	private SessionMap<String,Object> sessionMap;
+	private Map<String,Object> userSession;
 
 	@Override
-	public void setSession(Map<String, Object> map) {
+	public void setSession(Map<String, Object> session) {
 
-		sessionMap = (SessionMap)map;
+		userSession = session;
 	}
 
 	public String logout(){
-	    if(sessionMap!=null){
-	        sessionMap.clear();
+	    if(userSession!=null){
+	        userSession.clear();
 	    }
 	    return "success";
 	}
