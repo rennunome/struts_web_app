@@ -15,10 +15,7 @@
 <h3>トップ画面</h3>
 <div align="center">
 			<!-- セッションに詰めたadmin_flag情報 -->
-			<%-- <p>${session.user_admin}</p>
-			<s:property value="#session['user_admin']" />
-			<% byte admin = (byte)ActionContext.getContext().getSession().get("user_admin");%>
-			<% if(admin == 1) {%> --%>
+			<s:if test="%{#session.admin_flag = 1}">
 			<s:form action="list"  method="POST">
 			<s:submit value="問題・答えを登録する ＞" />
 			</s:form>
@@ -31,16 +28,20 @@
 			<s:form action="userlist"  method="post">
 			<s:submit type="submit" value="ユーザを追加・編集する＞" />
 			</s:form>
+			</s:if>
 
+			<s:else>
 			<!-- 画面分岐 -->
-			<%-- <% } else { %>
 			<s:form action="test"  method="post">
-			<input type="submit" value="テストをする ＞" style="width: 250px">
+			<s:submit type="submit" value="テストをする ＞" />
 			</s:form>
 			<s:form action="history"  method="post">
-			<input type="submit" value="過去の採点結果をみる ＞" style="width: 250px">
+			<s:submit type="submit" value="過去の採点結果をみる ＞" />
 			</s:form>
-			<% } %> --%>
-		</div>
+			<s:form action="userlist"  method="post">
+			<s:submit type="submit" value="ユーザを追加・編集する＞" />
+			</s:form>
+			</s:else>
+</div>
 </body>
 </html>
