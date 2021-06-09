@@ -55,7 +55,7 @@ public class LoginAction extends ActionSupport {
 				if(id == qid) {//login.jspから送られてきたidとデータベースから取得したidが正しい場合、
 					if(password.equals(users.get(i).getPassword())){//login.jspから送られてきたpasswordとデータベースから取得したpasswordが正しい場合、
 						ret = SUCCESS;//戻り値retにSUCCESSを代入する　SUCCESSはActionSupportが実装しているActionインターフェースに定義されている定数SUCCESS=“success”
-						admin = users.get(i).getAdminFlag();
+						admin = users.get(i).getAdmin_flag();
 						name = users.get(i).getName();
 						}
 					}
