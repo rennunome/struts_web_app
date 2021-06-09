@@ -102,5 +102,10 @@
 			<result name="success">/view/test/result.jsp</result>
 		</action>
 
+		<!-- history action -->
+		<action name="history" class="action.HistoryAction" method="execute">
+			<result name="success">/view/history/history.jsp</result>
+		</action>
+
     </package>
 </struts>
