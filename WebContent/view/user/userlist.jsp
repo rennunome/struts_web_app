@@ -12,7 +12,7 @@
 <body>
 <h3>ユーザーリスト</h3>
 	<!-- admin = 1だったら新規登録ボタン表示 -->
-	<s:if test="%{#session.admin_flag = 1}">
+	<s:if test="%{#session.user_admin == 1}">
 			<s:form action="userregister" method="post">
 				<s:submit value="新規登録" />
 			</s:form>
@@ -30,10 +30,18 @@
 	<tr>
 	<td><s:property value="id" /></td>
 	<!-- admin -->
-	<td><s:property value="admin_flag" /></td>
+	<td>
+		<s:if test="%{admin_flag == 1}">
+			管理者
+		</s:if>
+		<s:else>
+			一般
+		</s:else>
+	</td>
 	<!-- name -->
 	<td><s:property value="name" /></td>
 	<!-- admin = 1だったら編集と削除ボタン -->
+	<s:if test="%{#session.user_admin == 1}">
 	<td>
 			<s:form action="useredit" method="post">
 				<s:hidden name="user_id" value="%{id}" />
@@ -46,6 +54,7 @@
 				<s:submit value="削除" />
 			</s:form>
 	</td>
+	</s:if>
 	</tr>
 	</s:iterator>
 	</table>

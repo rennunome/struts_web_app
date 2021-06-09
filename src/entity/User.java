@@ -67,15 +67,10 @@ public class User {
 	private  Timestamp deleted_at;
 
 
+	@Getter
+	@Setter
 	@Column(name="admin_flag")
 	private byte admin_flag;
 
-	public byte getAdminFlag(){
-		return admin_flag;
-	}
-
-	public void setAdminFlag(byte admin_flag){
-		this.admin_flag = admin_flag;
-	}
 
 	}

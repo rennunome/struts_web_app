@@ -15,7 +15,7 @@
 <h3>トップ画面</h3>
 <div align="center">
 			<!-- セッションに詰めたadmin_flag情報 -->
-			<s:if test="%{#session.admin_flag = 1}">
+			<s:if test="%{#session.user_admin == 1}">
 			<s:form action="list"  method="POST">
 			<s:submit value="問題・答えを登録する ＞" />
 			</s:form>
