@@ -112,5 +112,35 @@
 			<result name="success">/view/user/userlist.jsp</result>
 		</action>
 
+		<!-- user register (validation) action -->
+		<action name="userregisterconfirm" class="action.UserRegisterConfirmAction" method="execute">
+			<result name="success">/view/user/userregisterconfirm.jsp</result>
+			<result name="error" type="chain">userregister</result>
+		</action>
+		<action name="userregister">
+			<result>/view/user/userregister.jsp</result>
+		</action>
+
+		<!-- user registerdb action実行後、user list actionへ -->
+		<action name="userdbregister" class="action.UserRegisterDbAction" method="execute">
+			<result name="success" type= "chain">userlist</result>
+		</action>
+		<action name="userlist" class="action.UserListAction" method="execute">
+			<result name="success">/view/user/userlist.jsp</result>
+		</action>
+
+		<!-- user delete confirm action -->
+		<action name="userdeleteconfirm" class="action.UserDeleteConfirmAction" method="execute">
+			<result name="success">/view/user/userdeleteconfirm.jsp</result>
+		</action>
+
+		<!-- user delete action -->
+		<action name="userdelete" class="action.UserDeleteAction" method="execute">
+			<result name="success" type="chain">userlist</result>
+		</action>
+		<action name="userlist" class="action.UserListAction" method="execute">
+			<result name="success">/view/user/userlist.jsp</result>
+		</action>
+
     </package>
 </struts>
