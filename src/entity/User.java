@@ -22,7 +22,7 @@ import lombok.Setter;
 			),
 	@NamedQuery(
 			name = "findAllUsers",
-			query = "SELECT u FROM User AS u"
+			query = "SELECT u FROM User AS u WHERE u.deleteflag = 0"
 			)
 })
 

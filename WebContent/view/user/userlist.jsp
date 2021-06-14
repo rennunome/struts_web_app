@@ -10,7 +10,7 @@
 <title>User List</title>
 </head>
 <body>
-<h3>ユーザーリスト</h3>
+<h3>ユーザーリスト画面</h3>
 	<!-- admin = 1だったら新規登録ボタン表示 -->
 	<s:if test="%{#session.user_admin == 1}">
 			<s:form action="userregister" method="post">
