@@ -25,11 +25,11 @@
 		<label>管理者権限：</label>
 		<s:if test="(admin.equals(true))">
 		<p>あり</p>
-		<s:hidden name = "admin" value = "1" />
+		<s:hidden name = "ad" value = "1" />
 		</s:if>
 		<s:else>
 		<p>なし</p>
-		<s:hidden name = "admin" value = "0" />
+		<s:hidden name = "ad" value = "0" />
 		</s:else>
 		<br>
 		<div align="right">

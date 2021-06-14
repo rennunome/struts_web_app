@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 import util.DBUtil;
 
-public class UserDeleteConfirmAction extends ActionSupport{
+public class UserEditAction extends ActionSupport{
 
 	@Getter
 	@Setter

@@ -17,7 +17,7 @@ public class UserRegisterConfirmAction extends ActionSupport{
 
 	@Getter
 	@Setter
-	private String admin;
+	private boolean admin;
 
 	@Getter
 	@Setter

@@ -5,13 +5,6 @@ import com.opensymphony.xwork2.ActionSupport;
 import lombok.Getter;
 import lombok.Setter;
 
-//@Validations(
-//	    visitorFields = {
-//	        @VisitorFieldValidator(fieldName="vo", appendPrefix=true)
-//	    }
-//	)
-
-//@Action("editConfirm")
 public class EditConfirmAction extends ActionSupport{
 
 	@Getter
@@ -68,7 +61,4 @@ public class EditConfirmAction extends ActionSupport{
 		ret = SUCCESS;
 		return ret;
 		}
-
-//@Getter @Setter
-//private SampleVO vo;
 }

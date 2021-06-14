@@ -21,7 +21,7 @@ public class UserRegisterDbAction extends ActionSupport{
 
 	@Getter
 	@Setter
-	private String admin;
+	private int ad;
 
 	@Getter
 	@Setter
@@ -29,7 +29,7 @@ public class UserRegisterDbAction extends ActionSupport{
 
 	public String execute() {
 
-		if(admin == "true") {
+		if(ad == 1) {
 			checkAdmin = 1;
 		} else {
 			checkAdmin = 0;
